@@ -8,11 +8,15 @@
     var $output = $('.data');
 
 
-$(".sort-dropdown").change(function(sortBy) {
+$(".sort-dropdown").change(function(sort) {
       if ($(".sort-dropdown option:selected").text() == "Lowest Price") {
-        legos = _.sortBy(legos, "price");
+        legos = _.sortBy(legos, function(lego) {
+          return +lego.price;
+          });
       } else if ($(".sort-dropdown option:selected").text() == "Highest Price") {
-        legos = _.sortBy(legos, "price").reverse();
+        legos = _.sortBy(legos, function(lego) {
+          return +lego.price;
+          }).reverse();
       }
       changeOrder(legos);
     });
